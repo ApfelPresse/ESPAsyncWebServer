@@ -358,10 +358,18 @@ void AsyncWebdav::sendPropResponse(AsyncResponseStream *response, boolean recurs
 
     // get file modified time
     time_t lastWrite = curFile->getLastWrite();
-    struct tm *lt = localtime(&t);
-    char str[32];
-    strftime(str, sizeof str, "%a, %d %b %Y %H:%M:%S GMT", lt);
-    String fileTimeStamp = str
+    struct tm* timeinfo;
+    time(&lastWrite);
+
+    timeinfo = localtime(&lastWrite);
+    char buffer[80];
+
+    strftime(buffer, 80, "%Y%m%d %r",timeinfo);
+
+    //struct tm *lt = localtime(lastWrite);
+    //char str[32];
+    //strftime(str, sizeof str, "%a, %d %b %Y %H:%M:%S GMT", lt);
+    String fileTimeStamp = buffer;
 
     // DateTimeClass dt(lastWrite);
     // String fileTimeStamp = dt.format("%a, %d %b %Y %H:%M:%S GMT");
