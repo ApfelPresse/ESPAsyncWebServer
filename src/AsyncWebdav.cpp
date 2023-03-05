@@ -364,7 +364,7 @@ void AsyncWebdav::sendPropResponse(AsyncResponseStream *response, boolean recurs
     timeinfo = localtime(&lastWrite);
     char buffer[80];
 
-    strftime(buffer, 80, "%Y%m%d %r",timeinfo);
+    strftime(buffer, 80, "%a, %d %b %Y %H:%M:%S GMT",timeinfo);
 
     //struct tm *lt = localtime(lastWrite);
     //char str[32];
